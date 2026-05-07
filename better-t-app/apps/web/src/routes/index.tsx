@@ -2,6 +2,8 @@ import { Button } from "@better-t-app/ui/components/button";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { BookOpen, Star, Wine } from "lucide-react";
 
+import { authClient } from "@/lib/auth-client";
+
 export const Route = createFileRoute("/")({
   component: HomeComponent,
 });
@@ -33,6 +35,9 @@ const FEATURES = [
 ];
 
 function HomeComponent() {
+  const { data: session } = authClient.useSession();
+  const isLoggedIn = !!session?.user;
+
   return (
     <div className="mx-auto max-w-[1280px] px-6">
       {/* ヒーローセクション */}
@@ -45,12 +50,25 @@ function HomeComponent() {
           お酒の知識を深めるための Web アプリです。
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
-          <Link to="/signup">
-            <Button size="lg" className="px-8">記録を始める</Button>
-          </Link>
-          <Link to="/login">
-            <Button size="lg" variant="outline" className="px-8">ログイン</Button>
-          </Link>
+          {isLoggedIn ? (
+            <>
+              <Link to="/logs/new">
+                <Button size="lg" className="px-8">新しく記録する</Button>
+              </Link>
+              <Link to="/dashboard">
+                <Button size="lg" variant="outline" className="px-8">ダッシュボードへ</Button>
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link to="/signup">
+                <Button size="lg" className="px-8">記録を始める</Button>
+              </Link>
+              <Link to="/login">
+                <Button size="lg" variant="outline" className="px-8">ログイン</Button>
+              </Link>
+            </>
+          )}
         </div>
       </section>
 
