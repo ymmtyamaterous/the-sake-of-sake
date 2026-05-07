@@ -23,20 +23,10 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
   component: RootComponent,
   head: () => ({
     meta: [
-      {
-        title: "better-t-app",
-      },
-      {
-        name: "description",
-        content: "better-t-app is a web application",
-      },
+      { title: "The sake of Sake" },
+      { name: "description", content: "飲んだお酒を記録・学べるお酒手帳アプリ" },
     ],
-    links: [
-      {
-        rel: "icon",
-        href: "/favicon.ico",
-      },
-    ],
+    links: [{ rel: "icon", href: "/favicon.ico" }],
   }),
 });
 
@@ -53,9 +43,14 @@ function RootComponent() {
         disableTransitionOnChange
         storageKey="vite-ui-theme"
       >
-        <div className="grid grid-rows-[auto_1fr] h-svh">
+        <div className="flex min-h-svh flex-col">
           <Header />
-          <Outlet />
+          <main className="flex-1">
+            <Outlet />
+          </main>
+          <footer className="border-t bg-card py-6 text-center text-xs text-muted-foreground">
+            © 2026 The sake of Sake. All rights reserved.
+          </footer>
         </div>
         <Toaster richColors />
       </ThemeProvider>
