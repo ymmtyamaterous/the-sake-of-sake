@@ -34,8 +34,11 @@ RUN bun run build
 # bun の .bun 仮想ストアを利用した脆弱な find/cp アプローチを回避する
 FROM oven/bun:1 AS native-deps
 WORKDIR /deps
-# libsql のバージョンは package.json catalog と合わせる (libsql: 0.5.22)
-RUN printf '{"type":"module","dependencies":{"libsql":"0.5.22"}}' > package.json && \
+# packages/db/package.json から libsql バージョンを動的に取得することで
+# バージョンの手動同期ミスを防ぐ
+COPY --from=pruner /app/out/json/packages/db/package.json /tmp/db-package.json
+RUN LIBSQL_VERSION=$(bun -e "process.stdout.write(JSON.parse(require('fs').readFileSync('/tmp/db-package.json','utf8')).dependencies.libsql)") && \
+    printf '{"type":"module","dependencies":{"libsql":"%s"}}' "$LIBSQL_VERSION" > package.json && \
     bun install --production
 
 # ── Stage 5: Runner ──────────────────────────────────────────────────────────

@@ -14,7 +14,8 @@ export async function runMigrateAndSeed() {
   const client = createClient({ url: env.DATABASE_URL });
   const db = drizzle({ client, schema });
 
-  const migrationsFolder = path.join(__dirname, "migrations");
+  const migrationsFolder =
+    process.env.MIGRATIONS_FOLDER ?? path.join(__dirname, "migrations");
   console.log("🔄 Running migrations from:", migrationsFolder);
   await migrate(db, { migrationsFolder });
   console.log("✅ Migrations applied");
