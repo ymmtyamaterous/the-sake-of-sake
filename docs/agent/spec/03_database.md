@@ -94,7 +94,7 @@
 | `rating` | INTEGER | NOT NULL | 評価（1〜5） |
 | `drank_at` | TEXT | NOT NULL | 飲んだ日（`YYYY-MM-DD` 形式） |
 | `notes` | TEXT | NULL | コメント・メモ（最大1000文字） |
-| `image_base64` | TEXT | NULL | 画像データ（Base64、最大2MB） |
+| `image_path` | TEXT | NULL | 画像ファイルのサーバー内パス（例: `uploads/drink-logs/{id}.jpg`） |
 | `created_at` | INTEGER (timestamp_ms) | NOT NULL | 作成日時 |
 | `updated_at` | INTEGER (timestamp_ms) | NOT NULL | 更新日時 |
 
@@ -156,7 +156,7 @@ user ─────────────────────────
      │ rating
      │ drank_at
      │ notes
-     └─ image_base64
+     └─ image_path
 
 knowledge_category ──────────────────────────────────
 │ slug (PK)                                          │

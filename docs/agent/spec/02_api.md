@@ -6,6 +6,7 @@
 - 認証: better-auth のセッション Cookie
 - バリデーション: Zod v4
 - エラーレスポンス: oRPC 標準のエラーオブジェクト
+- **画像アップロード**: `multipart/form-data` で Hono の番地となる画像アップロード専用エンドポイント（`POST /api/uploads/drink-logs`）を別途用意する
 
 ---
 
@@ -23,7 +24,33 @@ better-auth が `/api/auth/*` で自動処理するため、oRPC プロシージ
 
 ---
 
-### 2.2 ヘルスチェック
+### 2.2 画像アップロード
+
+#### `POST /api/uploads/drink-logs`
+- **認証**: 必要（セッション Cookie）
+- **概要**: 飲酒記録に添付する画像をアップロードし、サーバーローカルに保存する
+- **リクエスト形式**: `multipart/form-data`
+- **入力**:
+  ```
+  file: File   # JPEG / PNG / WEBP, 最大2MB
+  ```
+- **出力**:
+  ```ts
+  {
+    filePath: string  // サーバー内相対パス (例: uploads/drink-logs/abc123.jpg)
+    url: string       // 公開 URL (例: /uploads/drink-logs/abc123.jpg)
+  }
+  ```
+- **実装要件**:
+  - ファイル名は UUID でリネームし元の拡張子を保持（パストラバーサル防止）
+  - MIME タイプ検証（`image/jpeg` / `image/png` / `image/webp` のみ許可）
+  - ファイルサイズ上限: 2MB
+  - 保存先ディレクトリ: `{SERVER_ROOT}/uploads/drink-logs/`
+  - Hono の静的ファイル配信で `/uploads/*` を公開
+
+---
+
+### 2.3 ヘルスチェック
 
 #### `healthCheck`
 - **種別**: publicProcedure
@@ -46,7 +73,7 @@ better-auth が `/api/auth/*` で自動処理するため、oRPC プロシージ
     rating: number        // 評価 (1-5 の整数)
     drankAt: string       // 飲んだ日 (ISO 8601 date string)
     notes?: string        // メモ・コメント (最大1000文字)
-    imageBase64?: string  // 画像 (Base64エンコード, 最大2MB)
+    image?: File          // 画像ファイル (JPEG/PNG/WEBP, 最大2MB)
   }
   ```
 - **出力**: 作成した記録オブジェクト（後述の `DrinkLog` 型）
@@ -93,7 +120,7 @@ better-auth が `/api/auth/*` で自動処理するため、oRPC プロシージ
     rating?: number
     drankAt?: string
     notes?: string
-    imageBase64?: string
+    image?: File          // 差し替える場合のみ指定
   }
   ```
 - **出力**: 更新後の `DrinkLog`
@@ -168,7 +195,7 @@ type DrinkLog = {
   rating: number;        // 1-5
   drankAt: string;       // ISO 8601 date
   notes: string | null;
-  imageBase64: string | null;
+  imageUrl: string | null;   // サーバー上のファイル公開 URL (例: /uploads/drink-logs/{id}.jpg)
   createdAt: string;
   updatedAt: string;
 };
