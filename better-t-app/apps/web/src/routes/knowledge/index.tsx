@@ -24,8 +24,12 @@ function RouteComponent() {
   return (
     <div className="mx-auto max-w-[1280px] px-6 py-10">
       <h1 className="mb-3 font-serif text-4xl font-bold text-foreground">お酒の知識</h1>
-      <p className="mb-10 text-muted-foreground">
+      <p className="mb-4 text-muted-foreground">
         各カテゴリからお酒の基礎知識を学びましょう。
+      </p>
+      <p className="mb-10 flex items-center gap-1.5 rounded-lg border border-amber-300/50 bg-amber-50/50 px-4 py-2.5 text-xs text-amber-700 dark:border-amber-700/40 dark:bg-amber-900/20 dark:text-amber-400">
+        <span>⚠</span>
+        このページのお酒に関する情報は生成 AI によって作成されたものです。内容の正確性を保証するものではありません。
       </p>
 
       {isLoading ? (

@@ -32,6 +32,10 @@ function RouteComponent() {
         <div className="text-center text-muted-foreground py-10">銘柄が見つかりません</div>
       ) : (
         <div className="space-y-6">
+          <p className="flex items-center gap-1.5 rounded-lg border border-amber-300/50 bg-amber-50/50 px-4 py-2.5 text-xs text-amber-700 dark:border-amber-700/40 dark:bg-amber-900/20 dark:text-amber-400">
+            <span>⚠</span>
+            このページの情報は生成 AI によって作成されたものです。内容の正確性を保証するものではありません。
+          </p>
           <div>
             <h1 className="mb-1 font-serif text-4xl font-bold text-foreground">{item.name}</h1>
             {item.origin && (

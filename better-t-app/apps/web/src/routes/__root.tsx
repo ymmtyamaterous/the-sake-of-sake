@@ -48,8 +48,11 @@ function RootComponent() {
           <main className="flex-1">
             <Outlet />
           </main>
-          <footer className="border-t bg-card py-6 text-center text-xs text-muted-foreground">
-            © 2026 The sake of Sake. All rights reserved.
+          <footer className="border-t bg-card py-8 text-center text-xs text-muted-foreground space-y-2">
+            <p className="text-muted-foreground/70">
+              ※ サイト内のお酒に関する知識・銘柄情報は生成 AI によって作成されたものです。内容の正確性を保証するものではありません。
+            </p>
+            <p>© 2026 The sake of Sake. All rights reserved.</p>
           </footer>
         </div>
         <Toaster richColors />

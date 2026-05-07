@@ -36,10 +36,14 @@ function RouteComponent() {
             {data.category.label}
           </h1>
           {data.category.fullDescription && (
-            <p className="mb-10 max-w-2xl whitespace-pre-wrap text-muted-foreground">
+            <p className="mb-6 max-w-2xl whitespace-pre-wrap text-muted-foreground">
               {data.category.fullDescription}
             </p>
           )}
+          <p className="mb-10 flex items-center gap-1.5 rounded-lg border border-amber-300/50 bg-amber-50/50 px-4 py-2.5 text-xs text-amber-700 dark:border-amber-700/40 dark:bg-amber-900/20 dark:text-amber-400">
+            <span>⚠</span>
+            このページの情報は生成 AI によって作成されたものです。内容の正確性を保証するものではありません。
+          </p>
 
           <h2 className="mb-6 font-serif text-2xl font-semibold">代表的な銘柄</h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
