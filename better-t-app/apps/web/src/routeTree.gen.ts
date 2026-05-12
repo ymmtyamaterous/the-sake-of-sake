@@ -13,11 +13,15 @@ import { Route as SignupRouteImport } from './routes/signup'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as VenuesIndexRouteImport } from './routes/venues/index'
 import { Route as LogsIndexRouteImport } from './routes/logs/index'
 import { Route as KnowledgeIndexRouteImport } from './routes/knowledge/index'
+import { Route as VenuesNewRouteImport } from './routes/venues/new'
 import { Route as LogsNewRouteImport } from './routes/logs/new'
+import { Route as VenuesVenueIdIndexRouteImport } from './routes/venues/$venueId/index'
 import { Route as LogsLogIdIndexRouteImport } from './routes/logs/$logId/index'
 import { Route as KnowledgeCategoryIndexRouteImport } from './routes/knowledge/$category/index'
+import { Route as VenuesVenueIdEditRouteImport } from './routes/venues/$venueId/edit'
 import { Route as LogsLogIdEditRouteImport } from './routes/logs/$logId/edit'
 import { Route as KnowledgeCategoryItemIdRouteImport } from './routes/knowledge/$category/$itemId'
 
@@ -41,6 +45,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VenuesIndexRoute = VenuesIndexRouteImport.update({
+  id: '/venues/',
+  path: '/venues/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LogsIndexRoute = LogsIndexRouteImport.update({
   id: '/logs/',
   path: '/logs/',
@@ -51,9 +60,19 @@ const KnowledgeIndexRoute = KnowledgeIndexRouteImport.update({
   path: '/knowledge/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VenuesNewRoute = VenuesNewRouteImport.update({
+  id: '/venues/new',
+  path: '/venues/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LogsNewRoute = LogsNewRouteImport.update({
   id: '/logs/new',
   path: '/logs/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VenuesVenueIdIndexRoute = VenuesVenueIdIndexRouteImport.update({
+  id: '/venues/$venueId/',
+  path: '/venues/$venueId/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LogsLogIdIndexRoute = LogsLogIdIndexRouteImport.update({
@@ -64,6 +83,11 @@ const LogsLogIdIndexRoute = LogsLogIdIndexRouteImport.update({
 const KnowledgeCategoryIndexRoute = KnowledgeCategoryIndexRouteImport.update({
   id: '/knowledge/$category/',
   path: '/knowledge/$category/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VenuesVenueIdEditRoute = VenuesVenueIdEditRouteImport.update({
+  id: '/venues/$venueId/edit',
+  path: '/venues/$venueId/edit',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LogsLogIdEditRoute = LogsLogIdEditRouteImport.update({
@@ -83,12 +107,16 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
   '/logs/new': typeof LogsNewRoute
+  '/venues/new': typeof VenuesNewRoute
   '/knowledge/': typeof KnowledgeIndexRoute
   '/logs/': typeof LogsIndexRoute
+  '/venues/': typeof VenuesIndexRoute
   '/knowledge/$category/$itemId': typeof KnowledgeCategoryItemIdRoute
   '/logs/$logId/edit': typeof LogsLogIdEditRoute
+  '/venues/$venueId/edit': typeof VenuesVenueIdEditRoute
   '/knowledge/$category/': typeof KnowledgeCategoryIndexRoute
   '/logs/$logId/': typeof LogsLogIdIndexRoute
+  '/venues/$venueId/': typeof VenuesVenueIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -96,12 +124,16 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
   '/logs/new': typeof LogsNewRoute
+  '/venues/new': typeof VenuesNewRoute
   '/knowledge': typeof KnowledgeIndexRoute
   '/logs': typeof LogsIndexRoute
+  '/venues': typeof VenuesIndexRoute
   '/knowledge/$category/$itemId': typeof KnowledgeCategoryItemIdRoute
   '/logs/$logId/edit': typeof LogsLogIdEditRoute
+  '/venues/$venueId/edit': typeof VenuesVenueIdEditRoute
   '/knowledge/$category': typeof KnowledgeCategoryIndexRoute
   '/logs/$logId': typeof LogsLogIdIndexRoute
+  '/venues/$venueId': typeof VenuesVenueIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -110,12 +142,16 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
   '/logs/new': typeof LogsNewRoute
+  '/venues/new': typeof VenuesNewRoute
   '/knowledge/': typeof KnowledgeIndexRoute
   '/logs/': typeof LogsIndexRoute
+  '/venues/': typeof VenuesIndexRoute
   '/knowledge/$category/$itemId': typeof KnowledgeCategoryItemIdRoute
   '/logs/$logId/edit': typeof LogsLogIdEditRoute
+  '/venues/$venueId/edit': typeof VenuesVenueIdEditRoute
   '/knowledge/$category/': typeof KnowledgeCategoryIndexRoute
   '/logs/$logId/': typeof LogsLogIdIndexRoute
+  '/venues/$venueId/': typeof VenuesVenueIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -125,12 +161,16 @@ export interface FileRouteTypes {
     | '/login'
     | '/signup'
     | '/logs/new'
+    | '/venues/new'
     | '/knowledge/'
     | '/logs/'
+    | '/venues/'
     | '/knowledge/$category/$itemId'
     | '/logs/$logId/edit'
+    | '/venues/$venueId/edit'
     | '/knowledge/$category/'
     | '/logs/$logId/'
+    | '/venues/$venueId/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -138,12 +178,16 @@ export interface FileRouteTypes {
     | '/login'
     | '/signup'
     | '/logs/new'
+    | '/venues/new'
     | '/knowledge'
     | '/logs'
+    | '/venues'
     | '/knowledge/$category/$itemId'
     | '/logs/$logId/edit'
+    | '/venues/$venueId/edit'
     | '/knowledge/$category'
     | '/logs/$logId'
+    | '/venues/$venueId'
   id:
     | '__root__'
     | '/'
@@ -151,12 +195,16 @@ export interface FileRouteTypes {
     | '/login'
     | '/signup'
     | '/logs/new'
+    | '/venues/new'
     | '/knowledge/'
     | '/logs/'
+    | '/venues/'
     | '/knowledge/$category/$itemId'
     | '/logs/$logId/edit'
+    | '/venues/$venueId/edit'
     | '/knowledge/$category/'
     | '/logs/$logId/'
+    | '/venues/$venueId/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -165,12 +213,16 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   SignupRoute: typeof SignupRoute
   LogsNewRoute: typeof LogsNewRoute
+  VenuesNewRoute: typeof VenuesNewRoute
   KnowledgeIndexRoute: typeof KnowledgeIndexRoute
   LogsIndexRoute: typeof LogsIndexRoute
+  VenuesIndexRoute: typeof VenuesIndexRoute
   KnowledgeCategoryItemIdRoute: typeof KnowledgeCategoryItemIdRoute
   LogsLogIdEditRoute: typeof LogsLogIdEditRoute
+  VenuesVenueIdEditRoute: typeof VenuesVenueIdEditRoute
   KnowledgeCategoryIndexRoute: typeof KnowledgeCategoryIndexRoute
   LogsLogIdIndexRoute: typeof LogsLogIdIndexRoute
+  VenuesVenueIdIndexRoute: typeof VenuesVenueIdIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -203,6 +255,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/venues/': {
+      id: '/venues/'
+      path: '/venues'
+      fullPath: '/venues/'
+      preLoaderRoute: typeof VenuesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/logs/': {
       id: '/logs/'
       path: '/logs'
@@ -217,11 +276,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KnowledgeIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/venues/new': {
+      id: '/venues/new'
+      path: '/venues/new'
+      fullPath: '/venues/new'
+      preLoaderRoute: typeof VenuesNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/logs/new': {
       id: '/logs/new'
       path: '/logs/new'
       fullPath: '/logs/new'
       preLoaderRoute: typeof LogsNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/venues/$venueId/': {
+      id: '/venues/$venueId/'
+      path: '/venues/$venueId'
+      fullPath: '/venues/$venueId/'
+      preLoaderRoute: typeof VenuesVenueIdIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/logs/$logId/': {
@@ -236,6 +309,13 @@ declare module '@tanstack/react-router' {
       path: '/knowledge/$category'
       fullPath: '/knowledge/$category/'
       preLoaderRoute: typeof KnowledgeCategoryIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/venues/$venueId/edit': {
+      id: '/venues/$venueId/edit'
+      path: '/venues/$venueId/edit'
+      fullPath: '/venues/$venueId/edit'
+      preLoaderRoute: typeof VenuesVenueIdEditRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/logs/$logId/edit': {
@@ -261,12 +341,16 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   SignupRoute: SignupRoute,
   LogsNewRoute: LogsNewRoute,
+  VenuesNewRoute: VenuesNewRoute,
   KnowledgeIndexRoute: KnowledgeIndexRoute,
   LogsIndexRoute: LogsIndexRoute,
+  VenuesIndexRoute: VenuesIndexRoute,
   KnowledgeCategoryItemIdRoute: KnowledgeCategoryItemIdRoute,
   LogsLogIdEditRoute: LogsLogIdEditRoute,
+  VenuesVenueIdEditRoute: VenuesVenueIdEditRoute,
   KnowledgeCategoryIndexRoute: KnowledgeCategoryIndexRoute,
   LogsLogIdIndexRoute: LogsLogIdIndexRoute,
+  VenuesVenueIdIndexRoute: VenuesVenueIdIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
