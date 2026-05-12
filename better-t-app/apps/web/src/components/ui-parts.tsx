@@ -10,12 +10,35 @@ const CATEGORY_MAP: Record<string, { label: string; color: string }> = {
   other: { label: "その他", color: "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300" },
 };
 
+const VENUE_TYPE_MAP: Record<string, { label: string; color: string }> = {
+  izakaya: { label: "居酒屋", color: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300" },
+  bar: { label: "バー", color: "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300" },
+  wine_bar: { label: "ワインバー", color: "bg-rose-100 text-rose-800 dark:bg-rose-900/30 dark:text-rose-300" },
+  sake_bar: { label: "日本酒バー", color: "bg-sky-100 text-sky-800 dark:bg-sky-900/30 dark:text-sky-300" },
+  beer_bar: { label: "ビアバー", color: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300" },
+  other: { label: "その他", color: "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300" },
+};
+
 export function CategoryBadge({ category }: { category: string }) {
   const meta = CATEGORY_MAP[category] ?? { label: category, color: "bg-gray-100 text-gray-700" };
   return (
     <span
       className={cn(
         "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium tracking-wide uppercase",
+        meta.color,
+      )}
+    >
+      {meta.label}
+    </span>
+  );
+}
+
+export function VenueTypeBadge({ type }: { type: string }) {
+  const meta = VENUE_TYPE_MAP[type] ?? { label: type, color: "bg-gray-100 text-gray-700" };
+  return (
+    <span
+      className={cn(
+        "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium tracking-wide",
         meta.color,
       )}
     >

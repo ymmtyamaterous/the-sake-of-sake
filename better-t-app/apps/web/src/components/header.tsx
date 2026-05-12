@@ -28,6 +28,12 @@ export default function Header() {
           >
             マイ記録
           </Link>
+          <Link
+            to="/venues"
+            className="text-sm font-medium text-muted-foreground hover:text-foreground"
+          >
+            お店記録
+          </Link>
         </nav>
 
         {/* 右端 */}
