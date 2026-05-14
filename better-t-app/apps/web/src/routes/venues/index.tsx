@@ -57,8 +57,8 @@ function RouteComponent() {
 
   return (
     <div className="mx-auto max-w-[1280px] px-6 py-10">
-      <div className="mb-6 flex items-center justify-between">
-        <h1 className="font-serif text-3xl font-bold text-foreground">お店記録</h1>
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+        <h1 className="font-serif text-2xl font-bold text-foreground sm:text-3xl">お店記録</h1>
         <Link
           to="/venues/new"
           className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:opacity-90 transition-opacity"

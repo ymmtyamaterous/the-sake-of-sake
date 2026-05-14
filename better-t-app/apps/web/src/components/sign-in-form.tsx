@@ -61,7 +61,7 @@ export default function SignInForm() {
           </p>
         </div>
 
-        <div className="rounded-lg border bg-card p-8 shadow-sm">
+        <div className="rounded-lg border bg-card p-6 shadow-sm sm:p-8">
           <form
             onSubmit={(e) => {
               e.preventDefault();

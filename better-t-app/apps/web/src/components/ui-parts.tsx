@@ -19,13 +19,14 @@ const VENUE_TYPE_MAP: Record<string, { label: string; color: string }> = {
   other: { label: "その他", color: "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300" },
 };
 
-export function CategoryBadge({ category }: { category: string }) {
+export function CategoryBadge({ category, className }: { category: string; className?: string }) {
   const meta = CATEGORY_MAP[category] ?? { label: category, color: "bg-gray-100 text-gray-700" };
   return (
     <span
       className={cn(
         "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium tracking-wide uppercase",
         meta.color,
+        className,
       )}
     >
       {meta.label}
@@ -33,13 +34,14 @@ export function CategoryBadge({ category }: { category: string }) {
   );
 }
 
-export function VenueTypeBadge({ type }: { type: string }) {
+export function VenueTypeBadge({ type, className }: { type: string; className?: string }) {
   const meta = VENUE_TYPE_MAP[type] ?? { label: type, color: "bg-gray-100 text-gray-700" };
   return (
     <span
       className={cn(
         "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium tracking-wide",
         meta.color,
+        className,
       )}
     >
       {meta.label}

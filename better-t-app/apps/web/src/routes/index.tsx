@@ -41,8 +41,8 @@ function HomeComponent() {
   return (
     <div className="mx-auto max-w-[1280px] px-6">
       {/* ヒーローセクション */}
-      <section className="py-20 text-center">
-        <h1 className="font-serif text-5xl font-bold leading-tight text-foreground">
+      <section className="py-12 text-center sm:py-20">
+        <h1 className="font-serif text-3xl font-bold leading-tight text-foreground sm:text-5xl">
           あなたの飲んだお酒を、<br className="hidden sm:block" />記録しよう。
         </h1>
         <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
@@ -93,7 +93,7 @@ function HomeComponent() {
         <h2 className="mb-10 text-center font-serif text-3xl font-semibold text-foreground">
           お酒の知識を探す
         </h2>
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-5">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
           {CATEGORIES.map((cat) => (
             <Link
               key={cat.slug}
