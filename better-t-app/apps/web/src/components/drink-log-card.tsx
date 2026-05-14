@@ -38,7 +38,7 @@ export function DrinkLogCard({ log, serverUrl }: { log: DrinkLog; serverUrl: str
           <h3 className="font-serif font-semibold text-foreground leading-snug line-clamp-2">
             {log.name}
           </h3>
-          <CategoryBadge category={log.category} />
+          <CategoryBadge category={log.category} className="shrink-0" />
         </div>
 
         <StarRating value={log.rating} readonly size="sm" />

@@ -29,7 +29,7 @@ function RouteComponent() {
 
   return (
     <div className="mx-auto max-w-[1280px] px-6 py-10">
-      <h1 className="mb-2 font-serif text-4xl font-bold text-foreground">
+      <h1 className="mb-2 font-serif text-2xl font-bold text-foreground sm:text-4xl">
         ようこそ、{session.data?.user.name} さん
       </h1>
       <p className="mb-10 text-muted-foreground">あなたのお酒手帳へ</p>

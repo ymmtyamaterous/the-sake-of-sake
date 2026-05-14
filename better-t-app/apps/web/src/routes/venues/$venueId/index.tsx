@@ -77,11 +77,11 @@ function RouteComponent() {
       )}
 
       <div className="space-y-4">
-        <div className="flex items-start justify-between gap-4">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
           <h1 className="font-serif text-3xl font-bold text-foreground leading-snug">
             {venue.name}
           </h1>
-          <div className="flex gap-2 shrink-0 pt-1">
+          <div className="flex gap-2 shrink-0 sm:pt-1">
             <Link
               to="/venues/$venueId/edit"
               params={{ venueId: venue.id }}

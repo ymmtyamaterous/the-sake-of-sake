@@ -40,7 +40,7 @@ export function VenueCard({ venue, serverUrl }: { venue: Venue; serverUrl: strin
           <h3 className="font-serif font-semibold text-foreground leading-snug line-clamp-2">
             {venue.name}
           </h3>
-          <VenueTypeBadge type={venue.type} />
+          <VenueTypeBadge type={venue.type} className="shrink-0" />
         </div>
 
         <StarRating value={venue.rating} readonly size="sm" />
